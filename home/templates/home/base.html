@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+
+ {% include 'home/header.html' %}
+
+  <body>
+    <div class="loader">
+      <div class="loading-animation"></div>
+    </div>
+
+    {% include 'home/navbar.html' %}
+
+    {% block content %} {% endblock %}
+
+    {% include 'home/scripts.html' %}
+
+  </body>
+
+</html>

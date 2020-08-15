@@ -1,0 +1,47 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+
+    <section class="bg-primary-3 text-light">
+      <div class="container mt-lg-6">
+        <div class="row">
+          <div class="col">
+            <h1 class="display-3">Get the best for your career.<br> In a few steps.</h1>
+            <div class="my-4">
+              <p class="lead">A guide for everyone, at any point in your career !</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section>
+      <div class="container">
+        <div class="row justify-content-center text-center mb-6">
+          <div class="col-xl-8 col-lg-9">
+            <h2 class="display-4 mx-xl-6">Discover our categories.</h2>
+            <p class="lead">
+              Content for everyone and anything
+            </p>
+          </div>
+        </div>
+
+        <div class="row text-center">
+        {% for p in page.get_children %}
+          <div class="col-md-6 col-lg-3 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
+            <img src="{% static 'assets/img/saas-sketch-2.svg' %}" alt="Image" class="mb-4">
+            <h5>{{ p.title }}</h5>
+            <p class="px-xl-4">{{ page.body }}</p>
+            <a href="{{ p.url }}" class="hover-arrow">Learn More</a>
+          </div>
+        {% endfor %}
+        </div>
+    </section>
+
+
+{% include 'home/footer.html' %}
+
+{% endblock %}
+

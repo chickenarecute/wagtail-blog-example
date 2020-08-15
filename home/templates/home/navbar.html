@@ -1,0 +1,91 @@
+{% load static %}
+    <div class="navbar-container ">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-primary" data-sticky="top">
+        <div class="container">
+          <div class="col flex-fill px-0 d-flex justify-content-between">
+            <a class="navbar-brand fade-page" href="/">
+              <img src="{% static 'assets/img/logo-white.svg' %}" alt="Leap">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+              <img class="icon navbar-toggler-open" src="{% static 'assets/img/icons/interface/menu.svg' %}" alt="menu interface icon" data-inject-svg />
+              <img class="icon navbar-toggler-close" src="{% static 'assets/img/icons/interface/cross.svg' %}" alt="cross interface icon" data-inject-svg />
+            </button>
+          </div>
+
+          <div class="collapse navbar-collapse col px-0 px-lg-2 flex-fill">
+            <div class="py-2 py-lg-0">
+              <ul class="navbar-nav">
+
+
+
+                <li class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown-grid" aria-expanded="false" aria-haspopup="true">Blog</a>
+                  <div class="dropdown-menu row">
+                    <div class="col-auto" data-dropdown-content>
+                      <div class="dropdown-grid-menu">
+                        <div class="dropdown">
+                          <a href="#" class="dropdown-item dropdown-toggle" data-toggle="dropdown-grid" aria-expanded="false" aria-haspopup="true">
+                            <span>Blog Layouts</span>
+                            <img class="icon bg-dark opacity-20" src="{% static 'assets/img/icons/interface/arrow-caret.svg' %}" alt="arrow-caret interface icon" data-inject-svg />
+                          </a>
+                          <div class="dropdown-menu row">
+                            <div class="col-auto" data-dropdown-content>
+                              <div class="dropdown-grid-menu"><a href="blog-cards.html" class="dropdown-item fade-page">Blog Cards</a><a href="blog-masonry.html" class="dropdown-item fade-page">Blog Masonry</a><a href="blog-sidebar.html" class="dropdown-item fade-page">Blog Sidebar</a>
+                                <a
+                                href="blog-magazine.html" class="dropdown-item fade-page">Blog Magazine</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="dropdown">
+                          <a href="#" class="dropdown-item dropdown-toggle" data-toggle="dropdown-grid" aria-expanded="false" aria-haspopup="true">
+                            <span>Article Layouts</span>
+                            <img class="icon bg-dark opacity-20" src="{% static 'assets/img/icons/interface/arrow-caret.svg' %}" alt="arrow-caret interface icon" data-inject-svg />
+                          </a>
+                          <div class="dropdown-menu row">
+                            <div class="col-auto" data-dropdown-content>
+                              <div class="dropdown-grid-menu"><a href="blog-article.html" class="dropdown-item fade-page">Article Basic</a><a href="blog-article-video.html" class="dropdown-item fade-page">Article Video</a><a href="blog-article-image-header.html" class="dropdown-item fade-page">Article Image Header</a>
+                                <a
+                                href="blog-article-image-header-parallax.html" class="dropdown-item fade-page">Article Image Parallax</a>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+
+
+                <li class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown-grid" aria-expanded="false" aria-haspopup="true">Create</a>
+                  <div class="dropdown-menu row">
+                    <div class="col-auto px-0" data-dropdown-content>
+                      <div class="bg-white rounded border shadow-lg o-hidden">
+                        <div class="p-3">
+                          <h6 class="mb-0">Create content</h6>
+                        </div>
+                        <div class="list-group list-group-flush">
+                          <a href="/admin" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center p-3">
+                            <img class="icon icon-md" src="{% static 'assets/img/icons/theme/files/selected-file.svg' %}" alt="selected-file icon" data-inject-svg />
+                            <div class="text-body ml-3">
+                              <span>Go to the creator interface</span>
+                              <div class="text-small text-muted">Write a new article</div>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="collapse navbar-collapse justify-content-end col flex-fill px-0"><a href="/contact" class="btn btn-primary ml-lg-3">Contact Us</a>
+
+          </div>
+        </div>
+      </nav>
+    </div>
