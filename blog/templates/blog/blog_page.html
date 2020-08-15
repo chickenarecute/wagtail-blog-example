@@ -1,0 +1,111 @@
+{% extends 'blog/blog_base.html' %}
+
+{% load static %}
+{% load wagtailcore_tags %}
+{% load wagtailimages_tags %}
+{% load custom_tags %}
+
+{% block content %}
+
+<div class="article-progress" data-sticky="below-nav">
+      <progress class="reading-position" value="0"></progress>
+      <div class="article-progress-wrapper">
+        <div class="container">
+          <div class="row">
+            <div class="col py-2">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex">
+                  <div class="text-small text-muted mr-1">Reading:</div>
+                  <div class="text-small">{{ page.title }}</div>
+                </div>
+                <div class="d-flex align-items-center">
+                  <span class="text-small text-muted">Share:</span>
+                  <div class="d-flex ml-1">
+                    <a href="#" class="mx-1 btn btn-sm btn-round btn-primary">
+                      <img class="icon" src="{% static 'assets/img/icons/social/twitter.svg' %}" alt="twitter social icon" data-inject-svg />
+                    </a>
+                    <a href="#" class="mx-1 btn btn-sm btn-round btn-primary">
+                      <img class="icon" src="{% static 'assets/img/icons/social/linkedin.svg' %}" alt="linkedin social icon" data-inject-svg />
+                    </a>
+                    <a href="#" class="mx-1 btn btn-sm btn-round btn-primary">
+                      <img class="icon" src="{% static 'assets/img/icons/social/facebook.svg' %}" alt="facebook social icon" data-inject-svg />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <section class="bg-dark text-light overlay" data-overlay>
+
+        {% image page.feed_image width-400 class="bg-image opacity-50" id="bar" %}
+
+      <div class="container pt-6">
+        <div class="row justify-content-center">
+          <div class="col-lg-10 col-xl-8">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="{{ page.get_parent.url }}">{{ page.get_parent.title }}</a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    <a href="#">{{ page.categories.first }}</a>
+                  </li>
+                </ol>
+              </nav>
+              <span class="badge bg-primary-alt text-primary">
+                <img class="icon bg-primary" src="{% static 'assets/img/icons/interface/heart.svg' %}" alt="heart interface icon" data-inject-svg />0</span>
+            </div>
+
+
+            <h1>{{ page.title }}</h1>
+            <div class="d-flex align-items-center">
+              <a href="#">
+                <img src="{% static 'assets/img/avatars/male-1.jpg' %}" alt="Avatar" class="avatar mr-2">
+              </a>
+              <div>
+                <div>by <a href="#">{{ page.author }}</a>
+                </div>
+                <div class="text-small text-muted">{{ page.date }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="p-0" data-reading-position>
+      <div class="container">
+        <div class="row justify-content-center">
+
+            <article class="article">
+              <p class="lead">
+                {{ page.intro }}
+              </p>
+
+                {{ page.body|richtext }}
+
+              {% if page.quote %}
+                {% include 'blog/quote.html' %}
+              {% endif %}
+
+              {% for cat in page.categories.all %}
+                <span class="badge badge-primary">{{ cat }}</span>
+              {% endfor %}
+
+
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+{% endblock %}
