@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'blog',
     'my_core',
 
+    "wagtail.contrib.routable_page",
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
     'wagtail.embeds',

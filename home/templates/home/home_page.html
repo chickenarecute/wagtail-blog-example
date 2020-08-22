@@ -1,5 +1,7 @@
 {% extends 'home/base.html' %}
 {% load static %}
+{% load wagtailimages_tags %}
+{% load wagtailcore_tags %}
 {% block content %}
 
     <section class="bg-primary-3 text-light">
@@ -29,13 +31,17 @@
         </div>
 
         <div class="row text-center">
-        {% for p in page.get_children %}
-          <div class="col-md-6 col-lg-3 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
-            <img src="{% static 'assets/img/saas-sketch-2.svg' %}" alt="Image" class="mb-4">
-            <h5>{{ p.title }}</h5>
-            <p class="px-xl-4">{{ page.body }}</p>
-            <a href="{{ p.url }}" class="hover-arrow">Learn More</a>
+        {% for p in page.get_children.specific %}
+
+          <div class="col-md-6 col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="100">
+            <a href="{{ p.url }}" class="card card-icon-2 card-body justify-content-between hover-shadow-3d bg-primary-3 text-light">
+              <div class="icon-round mb-3 mb-md-4 icon bg-white">
+                <img class="icon bg-primary" src="{% static 'assets/img/icons/theme/general/star.svg' %}" alt="icon" data-inject-svg />
+              </div>
+              <h5 class="mb-0">{{ p.title }}</h5>
+            </a>
           </div>
+
         {% endfor %}
         </div>
     </section>
