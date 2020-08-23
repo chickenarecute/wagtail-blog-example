@@ -48,7 +48,7 @@
                 <div class="d-flex justify-content-between mb-3">
                   <div class="text-small d-flex">
                     <div class="mr-2">
-                      {% if sub_page.categories.first %}
+                      {% if sub_page.categories is not None and sub_page.categories.first %}
                         <a href="#">{{ sub_page.categories.first }}</a>
                       {% else %}
                         <a href="#">General</a>
@@ -64,9 +64,9 @@
                   {{ sub_page.intro|richtext }}
                 </p>
                 <div class="d-flex align-items-center mt-3">
-                  <img src="{% static 'assets/img/avatars/female-3.jpg' %}" alt="Image" class="avatar avatar-sm">
+                  {% image sub_page.author.photo  width-400 alt="Avatar" class="avatar mr-2" %}
                   <div class="ml-1">
-                    <span class="text-small text-muted">By</span>
+                    <span class="text-small text-muted">By </span>
                     <span class="text-small">{{ sub_page.author }}</span>
                   </div>
                 </div>

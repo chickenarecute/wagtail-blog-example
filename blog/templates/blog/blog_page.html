@@ -59,15 +59,15 @@
                   </li>
                 </ol>
               </nav>
-              <span class="badge bg-primary-alt text-primary">
-                <img class="icon bg-primary" src="{% static 'assets/img/icons/interface/heart.svg' %}" alt="heart interface icon" data-inject-svg />0</span>
             </div>
 
 
             <h1>{{ page.title }}</h1>
             <div class="d-flex align-items-center">
               <a href="#">
-                <img src="{% static 'assets/img/avatars/male-1.jpg' %}" alt="Avatar" class="avatar mr-2">
+
+                {% image page.author.photo  width-400 alt="Avatar" class="avatar mr-2" %}
+
               </a>
               <div>
                 <div>by <a href="#">{{ page.author }}</a>

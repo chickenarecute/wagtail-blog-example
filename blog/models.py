@@ -33,6 +33,32 @@ class BlogCategory(models.Model):
         verbose_name_plural = "Categories"
 
 
+@register_snippet
+class Author(models.Model):
+    name = models.CharField(max_length=255)
+    photo = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+'
+    )
+    presentation = RichTextField(blank=True)
+
+    panels = [
+        FieldPanel('name'),
+        ImageChooserPanel('photo'),
+        FieldPanel('presentation', classname="full"),
+    ]
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Author"
+        verbose_name_plural = "Authors"
+
+
 class BlogIndexPage(Page):
     intro = RichTextField(blank=True)
 
@@ -53,7 +79,7 @@ class BlogIndexPage(Page):
     ]
 
     def get_posts(self):
-        return self.get_children()
+        return self.get_children().specific()
 
     def get_context(self, request, *args, **kwargs):
         context = super(BlogIndexPage, self).get_context(request, *args, **kwargs)
@@ -76,7 +102,8 @@ class BlogPage(Page):
     intro = models.CharField(max_length=250)
     body = RichTextField(blank=True)
     quote = models.CharField(max_length=250, default='', blank=True)
-    author = models.CharField(max_length=100)
+
+    author = models.ForeignKey('blog.Author', null=True, on_delete=models.SET_NULL)
     categories = ParentalManyToManyField('blog.BlogCategory', blank=True)
 
     feed_image = models.ForeignKey(
@@ -90,21 +117,21 @@ class BlogPage(Page):
     search_fields = Page.search_fields + [
         index.SearchField('intro'),
         index.SearchField('body'),
-        index.SearchField('author')
+        FieldPanel('categories', widget=forms.CheckboxSelectMultiple)
     ]
 
     promote_panels = [
         MultiFieldPanel(Page.promote_panels, "Common page configuration"),
         ImageChooserPanel('feed_image'),
-        FieldPanel('categories', widget=forms.CheckboxSelectMultiple)
+        FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
+        FieldPanel('author')
     ]
 
     content_panels = Page.content_panels + [
         FieldPanel('date'),
         FieldPanel('intro'),
         FieldPanel('body', classname="full"),
-        FieldPanel('quote'),
-        FieldPanel('author')
+        FieldPanel('quote')
     ]
 
     parent_page_types = ['blog.BlogIndexPage']
