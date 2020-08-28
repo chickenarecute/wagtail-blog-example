@@ -74,7 +74,7 @@ class BlogIndexPage(Page):
         FieldPanel('intro', classname="full"),
     ]
     promote_panels = [
-        MultiFieldPanel(Page.promote_panels, "Common page configuration"),
+        MultiFieldPanel(Page.promote_panels, "Comçmon page configuration"),
         ImageChooserPanel('feed_image'),
     ]
 
