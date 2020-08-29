@@ -1,29 +1,86 @@
-{% extends "base.html" %}
+{% extends "home/base.html" %}
 {% load static wagtailcore_tags %}
+{% load wagtailimages_tags %}
 
 {% block body_class %}template-searchresults{% endblock %}
+
+<section>
+  <div class="container">
 
 {% block title %}Search{% endblock %}
 
 {% block content %}
-    <h1>Search</h1>
 
-    <form action="{% url 'search' %}" method="get">
-        <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
-        <input type="submit" value="Search" class="button">
-    </form>
+      <div class="container align-items-center">
 
+          <div class="row"> <h1>Search</h1></div>
+
+          <div class="row">
+
+            <form action="{% url 'search' %}" method="get">
+                <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+                <input type="submit" value="Search" class="button">
+            </form>
+
+          </div>
+
+      </div>
+
+            <div class="divider">
+        <img src="assets/img/dividers/divider-2.svg" alt="graphical divider" data-inject-svg />
+      </div>
+
+
+      <section>
+      <div class="container">
+        <div class="row mb-4">
     {% if search_results %}
-        <ul>
-            {% for result in search_results %}
-                <li>
-                    <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
-                    {% if result.search_description %}
-                        {{ result.search_description }}
-                    {% endif %}
-                </li>
+
+
+
+            {% for sub_page in search_results %}
+
+
+          <div class="col-md-6 col-lg-4 d-flex" data-aos="fade-up" data-aos-delay="200">
+            <div class="card">
+              <a href="{{ p.url }}">
+                {% if sub_page.feed_image %}
+                  {% image sub_page.feed_image fill-400x233 class="card-img-top" id="bar" %}
+                {% else %}
+                  <img src="{% static 'assets/img/article-1.jpg' %}" alt="Image" class="card-img-top">
+                {% endif %}
+              </a>
+              <div class="card-body d-flex flex-column">
+                <div class="d-flex justify-content-between mb-3">
+                  <div class="text-small d-flex">
+                    <div class="mr-2">
+                      {% if sub_page.categories is not None and sub_page.categories.first %}
+                        <a href="#">{{ sub_page.categories.first }}</a>
+                      {% else %}
+                        <a href="#">General</a>
+                      {% endif %}
+                    </div>
+                    <span class="text-muted">{% include_block sub_page.date %}</span>
+                  </div>
+                </div>
+                <a href="{{ sub_page.url }}">
+                  <h4>{{ sub_page.title }}</h4>
+                </a>
+                <p class="flex-grow-1">
+                  {{ sub_page.intro|richtext }}
+                </p>
+                <div class="d-flex align-items-center mt-3">
+                  {% image sub_page.author.photo  min-600x300 alt="Avatar" class="avatar mr-2" %}
+                  <div class="ml-1">
+                    <span class="text-small text-muted">By </span>
+                    <span class="text-small">{{ sub_page.author }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
             {% endfor %}
-        </ul>
+
 
         {% if search_results.has_previous %}
             <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
@@ -32,7 +89,16 @@
         {% if search_results.has_next %}
             <a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
         {% endif %}
+
     {% elif search_query %}
         No results found
     {% endif %}
+
+      </div>
+      </div>
+    </section>
+
 {% endblock %}
+
+  </div>
+</section>
