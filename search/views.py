@@ -3,6 +3,7 @@ from django.template.response import TemplateResponse
 
 from wagtail.core.models import Page
 from wagtail.search.models import Query
+from blog.models import BlogPage
 
 
 def search(request):
@@ -11,7 +12,7 @@ def search(request):
 
     # Search
     if search_query:
-        search_results = Page.objects.live().search(search_query)
+        search_results = BlogPage.objects.live().search(search_query)
         query = Query.get(search_query)
 
         # Record hit
